@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "items": [{
+      "id": 1,
+      "title": "/img/furniture/2.png"
+    }]
+  },
+  {
+    "id": 2,
+    "items": []
+  },
+  { "id": 3, "items": [] },
+  { "id": 4, "items": [] },
+  { "id": 5, "items": [] },
+  { "id": 6, "items": [] },
+  { "id": 7, "items": [] },
+  { "id": 8, "items": [] },
+  { "id": 9, "items": [] },
+  { "id": 10, "items": [] },
+  { "id": 11, "items": [] },
+  { "id": 12, "items": [] },
+  { "id": 13, "items": [] },
+  { "id": 14, "items": [] },
+  { "id": 15, "items": [] },
+  { "id": 16, "items": [] },
+  { "id": 17, "items": [] },
+  { "id": 18, "items": [] },
+  { "id": 19, "items": [] },
+  { "id": 20, "items": [] },
+  { "id": 21, "items": [] },
+  { "id": 22, "items": [] },
+  { "id": 23, "items": [] },
+  { "id": 24, "items": [] },
+  { "id": 25, "items": [] }
+]

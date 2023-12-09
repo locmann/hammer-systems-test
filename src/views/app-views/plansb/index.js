@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css';
 import boardData from '../../../assets/data/board.json';
 import menuItemsData from '../../../assets/data/menuItem.json';
-import BoardComponent from '../../../components/shared-components/BoardComponent';
+import { Button } from 'antd';
 
 const Plans = () => {
   const [menuItems, setmenuItems] = useState(menuItemsData);
   const [boards, setBoards] = useState(boardData);
   const [currentBoard, setCurrentBoard] = useState();
   const [currentItem, setCurrentItem] = useState();
-
+  const saveChanges = () => {
+    localStorage.setItem('planData', JSON.stringify(boards));
+  };
+  const importData = () => {
+    const data = localStorage.getItem('planData');
+    setBoards(JSON.parse(data));
+  };
   function dragOverHandler(e) {
     e.preventDefault();
     if (e.target.className === 'item') {
@@ -27,23 +33,25 @@ const Plans = () => {
     setCurrentItem(item);
   }
 
+  function dragMenuItemStartHandler(e, item) {
+    setCurrentItem(item.item);
+  }
+
   function dragEndHandler(e) {
     e.target.style.boxShadow = 'none';
   }
 
-  function dropHandler(e, board, item) {
+  function dropHandler(e, board) {
     e.preventDefault();
     e.stopPropagation();
-    const currentIndex = currentBoard.items.indexOf(currentItem);
-    currentBoard.items.splice(currentIndex, 1);
-    const dropIndex = board.items.indexOf(item);
-    board.items.splice(dropIndex + 1, 0, currentItem);
     setBoards(
       boards.map((b) => {
-        if (b.id === board.id) {
+        if (b.id === board?.id) {
+          board.item = currentItem;
           return board;
         }
-        if (b.id === currentBoard.id) {
+        if (b.id === currentBoard?.id) {
+          currentBoard.item = '';
           return currentBoard;
         }
         return b;
@@ -52,74 +60,70 @@ const Plans = () => {
     e.target.style.boxShadow = 'none';
   }
 
-  function dropCardHandler(e, board) {
-    board.items.push(currentItem);
-    e.stopPropagation();
-    const currentIndex = currentBoard.items.indexOf(currentItem);
-    currentBoard.items.splice(currentIndex, 1);
-
-    setBoards(
-      boards.map((b) => {
-        if (b.id === board.id) {
-          return board;
-        }
-        if (b.id === currentBoard.id) {
-          return currentBoard;
-        }
-        return b;
-      }),
-    );
-    e.target.style.boxShadow = 'none';
-  }
   return (
-    <div className="app">
-      <div className="board">
-        {boards.map((board) => (
-          <div
-            className="cells"
-            onDragOver={(e) => dragOverHandler(e)}
-            onDrop={(e) => dropCardHandler(e, board)}
-          >
-            {board.items.map((item) => (
+    <>
+      <div
+        className="app"
+        onDrop={(e) => dropHandler(e)}
+        onDragOver={(e) => dragOverHandler(e)}
+      >
+        <div className="board">
+          {boards.map((board) => (
+            <div
+              className="cells"
+              onDragOver={(e) => dragOverHandler(e)}
+            >
               <div
                 onDragOver={(e) => dragOverHandler(e)}
                 onDragLeave={(e) => dragLeaveHandler(e)}
-                onDragStart={(e) => dragStartHandler(e, board, item)}
+                onDragStart={(e) =>
+                  dragStartHandler(e, board, board.item)
+                }
                 onDragEnd={(e) => dragEndHandler(e)}
-                onDrop={(e) => dropHandler(e, board, item)}
+                onDrop={(e) => dropHandler(e, board)}
                 className="item"
                 draggable={true}
               >
-                <img src={item.title} />
+                {board.item ? <img src={board.item} /> : null}
               </div>
-            ))}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
+        <div className="menu">
+          {menuItems.map((item) => (
+            <div className="cells">
+              <div
+                onDragOver={(e) => dragOverHandler(e)}
+                onDragLeave={(e) => dragLeaveHandler(e)}
+                onDragStart={(e) => dragMenuItemStartHandler(e, item)}
+                onDragEnd={(e) => dragEndHandler(e)}
+                onDrop={(e) => dropHandler(e)}
+                className="item"
+                draggable={true}
+              >
+                <img src={item.item} />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+      <div className="func">
+        <Button
+          type="primary"
+          className="ml-2"
+          onClick={saveChanges}
+        >
+          Save
+        </Button>
+        <Button
+          className="ml-2"
+          onClick={importData}
+        >
+          Import
+        </Button>
+      </div>
+    </>
   );
 };
 
 export default Plans;
-
-/*<div className="menu">
-        {menuItems.map((item) => (
-          <div
-            className="cells"
-            onDragOver={(e) => dragOverHandler(e)}
-            onDrop={(e) => dropCardHandler(e, item)}
-          >
-            <div
-              onDragOver={(e) => dragOverHandler(e)}
-              onDragLeave={(e) => dragLeaveHandler(e)}
-              onDragStart={(e) => dragMenuItemStartHandler(e, item)}
-              onDragEnd={(e) => dragEndHandler(e)}
-              onDrop={(e) => dropMenuItemHandler(e)}
-              className="item"
-              draggable={true}
-            >
-              <img src={item.title} />
-            </div>
-          </div>
-        ))}
-      </div>*/

@@ -1,36 +1,33 @@
 [
   {
     "id": 1,
-    "items": [{
-      "id": 1,
-      "title": "/img/furniture/2.png"
-    }]
+    "item": "/img/furniture/2.png"
   },
   {
     "id": 2,
-    "items": []
+    "item": ""
   },
-  { "id": 3, "items": [] },
-  { "id": 4, "items": [] },
-  { "id": 5, "items": [] },
-  { "id": 6, "items": [] },
-  { "id": 7, "items": [] },
-  { "id": 8, "items": [] },
-  { "id": 9, "items": [] },
-  { "id": 10, "items": [] },
-  { "id": 11, "items": [] },
-  { "id": 12, "items": [] },
-  { "id": 13, "items": [] },
-  { "id": 14, "items": [] },
-  { "id": 15, "items": [] },
-  { "id": 16, "items": [] },
-  { "id": 17, "items": [] },
-  { "id": 18, "items": [] },
-  { "id": 19, "items": [] },
-  { "id": 20, "items": [] },
-  { "id": 21, "items": [] },
-  { "id": 22, "items": [] },
-  { "id": 23, "items": [] },
-  { "id": 24, "items": [] },
-  { "id": 25, "items": [] }
+  { "id": 3, "item": "" },
+  { "id": 4, "item": "" },
+  { "id": 5, "item": "" },
+  { "id": 6, "item": "" },
+  { "id": 7, "item": "" },
+  { "id": 8, "item": "" },
+  { "id": 9, "item": "" },
+  { "id": 10, "item": "" },
+  { "id": 11, "item": "" },
+  { "id": 12, "item": "" },
+  { "id": 13, "item": "" },
+  { "id": 14, "item": "" },
+  { "id": 15, "item": "" },
+  { "id": 16, "item": "" },
+  { "id": 17, "item": "" },
+  { "id": 18, "item": "" },
+  { "id": 19, "item": "" },
+  { "id": 20, "item": "" },
+  { "id": 21, "item": "" },
+  { "id": 22, "item": "" },
+  { "id": 23, "item": "" },
+  { "id": 24, "item": "" },
+  { "id": 25, "item": "" }
 ]

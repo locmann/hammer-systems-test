@@ -17,10 +17,13 @@
 
 .item {
     width: 100%;
-    border: 2px solid lightpink;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     border-radius: 6px;
-    margin: 5px 0;
+
     cursor: grab;
 }
 
@@ -39,7 +42,7 @@
     width: 100px;
     height: 100px;
     border: 1px solid lightgray;
-    padding: 20px 10px;
+
     border-radius: 12px;
 
     display: flex;
@@ -53,11 +56,18 @@ img {
 }
 
 .menu {
-    width: 200px;
-    height: 200px;
+    width: 50%;
     border-radius: 12px;
     border: 2px solid black;
     display: grid;
     grid-template-columns: 1fr 1fr ;
-    grid-template-rows: 1fr 1fr;
+
+    padding: 10px;
+    margin: auto;
+}
+
+.func {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
